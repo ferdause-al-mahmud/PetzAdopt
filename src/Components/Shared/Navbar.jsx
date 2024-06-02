@@ -1,31 +1,47 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
+    const { user, loading } = useAuth();
     const [isHamburgerOpen, setHamburgerOpen] = useState(false);
     const [isProfileOpen, setProfileOpen] = useState(false);
-
+    const { logOut } = useAuth()
     const toggleHamburger = () => {
         setHamburgerOpen(!isHamburgerOpen);
-        setProfileOpen(false); // Close profile dropdown when hamburger is toggled
+        setProfileOpen(false);
     };
 
     const toggleProfile = () => {
         setProfileOpen(!isProfileOpen);
-        setHamburgerOpen(false); // Close hamburger menu when profile is toggled
+        setHamburgerOpen(false);
     };
 
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='/pet-listing'>Pet Listing</NavLink></li>
         <li><NavLink to='/donation'>Donation campaigns</NavLink></li>
-        <li><NavLink to='/login'>Login</NavLink></li>
-        <li><NavLink to='/register'>Register</NavLink></li>
+        {!user && <>
+
+            <li><NavLink to='/login'>Login</NavLink></li>
+            <li><NavLink to='/register'>Register</NavLink></li>
+        </>}
     </>;
 
+    const handleLogOut = async () => {
+        try {
+            await logOut()
+            console.log("succesfully logout")
+        } catch (error) {
+            console.log("didnt logout")
+        }
+
+    }
+
+
     return (
-        <div className="sticky top-0 z-50 bg-base-100 shadow-md">
-            <div className="navbar bg-base-100">
+        <div className="sticky top-0 z-50 bg-[#ff946b] shadow-md">
+            <div className="navbar ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div
@@ -53,28 +69,30 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <div className="dropdown dropdown-end">
-                        <div
-                            tabIndex={0}
-                            role="button"
-                            className="btn btn-ghost btn-circle avatar"
-                            onClick={toggleProfile}
-                        >
-                            <div className="w-10 rounded-full">
-                                <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                            </div>
-                        </div>
-                        {isProfileOpen && (
-                            <ul
+                    {user && !loading && <>
+                        <div className="dropdown dropdown-end">
+                            <div
                                 tabIndex={0}
-                                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                                role="button"
+                                className="btn btn-ghost btn-circle avatar"
+                                onClick={toggleProfile}
                             >
-                                <li><a>Profile</a></li>
-                                <li><a>Dashboard</a></li>
-                                <li><a>Logout</a></li>
-                            </ul>
-                        )}
-                    </div>
+                                <div className="w-10 rounded-full">
+                                    <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                                </div>
+                            </div>
+                            {isProfileOpen && (
+                                <ul
+                                    tabIndex={0}
+                                    className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                                >
+                                    <li><a>Profile</a></li>
+                                    <li><a>Dashboard</a></li>
+                                    <li onClick={handleLogOut}><a >Logout</a></li>
+                                </ul>
+                            )}
+                        </div>
+                    </>}
                 </div>
             </div>
         </div>

@@ -1,7 +1,43 @@
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
+    const { signIn, setLoading, loading, signInWithGoogle } = useAuth();
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state || '/';
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const form = e.target
+        const email = form.email.value
+        const password = form.password.value
+
+        try {
+            setLoading(true)
+            await signIn(email, password)
+            navigate(from)
+            toast.success('Login Successful')
+        } catch (err) {
+            console.log(err)
+            toast.error(err.message.split('/')[1])
+            setLoading(false)
+        }
+    }
+
+    const handleGoogleSignIn = async () => {
+        try {
+            const result = await signInWithGoogle()
+            console.log(result)
+
+            navigate(from)
+            toast.success('Signup Successful')
+        } catch (err) {
+            console.log(err)
+            toast.error(err.message)
+        }
+    }
     return (
         <div className='flex justify-center items-center min-h-screen'>
             <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
@@ -12,6 +48,7 @@ const Login = () => {
                     </p>
                 </div>
                 <form
+                    onSubmit={handleSubmit}
                     className='space-y-6 ng-untouched ng-pristine ng-valid'
                 >
                     <div className='space-y-4'>
@@ -49,8 +86,9 @@ const Login = () => {
 
                     <div>
                         <button
+                            disabled={loading}
                             type='submit'
-                            className='bg- w-full rounded-md py-3 text-white'
+                            className='bg-[#ff946b] w-full rounded-md py-3 text-white'
                         >
                             Login
                         </button>
@@ -72,6 +110,8 @@ const Login = () => {
                 </div>
 
                 <button
+                    disabled={loading}
+                    onClick={handleGoogleSignIn}
                     className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
                 >
                     <FcGoogle size={32} />
