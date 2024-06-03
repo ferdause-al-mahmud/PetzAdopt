@@ -1,0 +1,57 @@
+[
+    {
+      "petId": "dog123",
+      "petImage": "https://i.ibb.co/ykS6p9w/dog.jpg",
+      "petName": "Buddy",
+      "petAge": "2 years",
+      "petLocation": "New York, NY",
+      "addedTime": "2024-06-01T10:30:00Z",
+      "adopted": true
+    },
+    {
+      "petId": "cat456",
+      "petImage": "https://i.ibb.co/Cs7p4BX/banner-cat.jpg",
+      "petName": "Whiskers",
+      "petAge": "1 year",
+      "petLocation": "Los Angeles, CA",
+      "addedTime": "2024-06-01T11:00:00Z",
+      "adopted": true
+    },
+    {
+      "petId": "fish789",
+      "petImage": "https://i.ibb.co/d5gP1DZ/petfish.jpg",
+      "petName": "Nemo",
+      "petAge": "6 months",
+      "petLocation": "Miami, FL",
+      "addedTime": "2024-06-01T11:30:00Z",
+      "adopted": true
+    },
+    {
+      "petId": "rabbit101",
+      "petImage": "https://i.ibb.co/zG89Dc2/rabbit.jpg",
+      "petName": "Thumper",
+      "petAge": "3 years",
+      "petLocation": "Chicago, IL",
+      "addedTime": "2024-06-01T12:00:00Z",
+      "adopted": true
+    },
+    {
+      "petId": "hamster112",
+      "petImage": "https://i.ibb.co/Ry97YC2/hamster.jpg",
+      "petName": "Gizmo",
+      "petAge": "1 year",
+      "petLocation": "Houston, TX",
+      "addedTime": "2024-06-01T12:30:00Z",
+      "adopted": true
+    },
+    {
+      "petId": "parrot131",
+      "petImage": "https://i.ibb.co/TrxRZRS/parrot.jpg",
+      "petName": "Polly",
+      "petAge": "4 years",
+      "petLocation": "San Francisco, CA",
+      "addedTime": "2024-06-01T13:00:00Z",
+      "adopted": true
+    }
+  ]
+  

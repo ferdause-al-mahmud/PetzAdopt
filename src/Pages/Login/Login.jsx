@@ -59,6 +59,7 @@ const Login = () => {
                             <input
                                 type='email'
                                 name='email'
+                                // onBlur={e => setEmail(e.target.value)}
                                 id='email'
                                 required
                                 placeholder='Enter Your Email Here'
@@ -96,6 +97,7 @@ const Login = () => {
                 </form>
                 <div className='space-y-1'>
                     <button
+                        // onClick={handleResetPassword}
                         className='text-xs hover:underline hover:text-[#ff946b] text-gray-400'
                     >
                         Forgot password?
