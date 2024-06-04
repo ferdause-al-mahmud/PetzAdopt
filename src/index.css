@@ -1,3 +1,38 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.post {
+    display: flex;
+    height: 350px;
+}
+
+.post .right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+}
+
+.post .left-col {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 1.5rem;
+}
+
+.post .avatar {
+    background-color: #eaeaea;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+}
+
+.post .avatar-skeleton {
+    width: 100%;
+    height: 100%;
+    line-height: 1;
+}

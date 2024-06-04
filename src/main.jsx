@@ -1,4 +1,3 @@
-import * as React from "react";
 import * as ReactDOM from "react-dom/client";
 import {
   RouterProvider,
@@ -8,14 +7,19 @@ import { router } from "./Routes/Routes";
 import AuthProvider from "./Providers/AuthProvider";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { HelmetProvider } from "react-helmet-async";
+const queryClient = new QueryClient()
 
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router} />
-      <ToastContainer />
-    </AuthProvider>
-  </React.StrictMode>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <ToastContainer />
+      </AuthProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
