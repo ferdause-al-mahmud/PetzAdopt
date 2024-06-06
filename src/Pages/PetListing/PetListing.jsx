@@ -3,19 +3,12 @@ import PetListCard from "../../Components/Cards/PetListCard";
 import { useQuery } from '@tanstack/react-query'
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { useState } from "react";
-import AdoptModal from "../../Components/Modals/AdoptModal";
 import 'react-loading-skeleton/dist/skeleton.css'
 import CardSkeleton from "../../Components/Skeleton/CardSkeleton";
 const PetListing = () => {
     const axiosCommon = useAxiosCommon();
     const [filter, setFilter] = useState('');
     const [search, setSearch] = useState('');
-    const [detailPet, setDetailPet] = useState('');
-    const [showModal, setShowModal] = useState(false);
-
-
-
-    console.log(detailPet)
 
     const { data: pets = [], isLoading } = useQuery({
         queryKey: ['pets', filter, search],
@@ -73,15 +66,13 @@ const PetListing = () => {
                         <CardSkeleton />
                         <CardSkeleton />
 
-                    </> : pets.map(pet => <PetListCard setDetailPet={setDetailPet} setShowModal={setShowModal} key={pet.petId} pet={pet}></PetListCard>)}
+                    </> : pets.map(pet => <PetListCard key={pet.petId} pet={pet}></PetListCard>)}
 
                 </div>
 
 
             </div>
-            {showModal && <>
-                <AdoptModal setShowModal={setShowModal}></AdoptModal>
-            </>}
+
         </div>
 
     );

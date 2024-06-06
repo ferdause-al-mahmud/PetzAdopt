@@ -59,7 +59,6 @@ const Login = () => {
                             <input
                                 type='email'
                                 name='email'
-                                // onBlur={e => setEmail(e.target.value)}
                                 id='email'
                                 required
                                 placeholder='Enter Your Email Here'

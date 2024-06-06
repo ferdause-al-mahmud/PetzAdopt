@@ -1,62 +1,69 @@
 [
-  {
-      "petId": "dog123",
-      "petImage": "https://i.ibb.co/ykS6p9w/dog.jpg",
-      "petName": "buddy",
-      "petAge": "2 years",
-      "petLocation": "New York, NY",
-      "category": "dog",
-      "addedTime": "2024-06-01T10:30:00Z",
-      "adopted": false
-  },
-  {
-      "petId": "cat456",
-      "petImage": "https://i.ibb.co/Cs7p4BX/banner-cat.jpg",
-      "petName": "whiskers",
-      "petAge": "1 year",
-      "petLocation": "Los Angeles, CA",
-      "category": "cat",
-      "addedTime": "2024-06-01T11:00:00Z",
-      "adopted": false
-  },
-  {
-      "petId": "fish789",
-      "petImage": "https://i.ibb.co/d5gP1DZ/petfish.jpg",
-      "petName": "nemo",
-      "petAge": "6 months",
-      "petLocation": "Miami, FL",
-      "category": "fish",
-      "addedTime": "2024-06-01T11:30:00Z",
-      "adopted": false
-  },
-  {
-      "petId": "rabbit101",
-      "petImage": "https://i.ibb.co/zG89Dc2/rabbit.jpg",
-      "petName": "thumper",
-      "petAge": "3 years",
-      "petLocation": "Chicago, IL",
-      "category": "rabbit",
-      "addedTime": "2024-06-01T12:00:00Z",
-      "adopted": false
-  },
-  {
-      "petId": "hamster112",
-      "petImage": "https://i.ibb.co/Ry97YC2/hamster.jpg",
-      "petName": "gizmo",
-      "petAge": "1 year",
-      "petLocation": "Houston, TX",
-      "category": "hamster",
-      "addedTime": "2024-06-01T12:30:00Z",
-      "adopted": false
-  },
-  {
-      "petId": "parrot131",
-      "petImage": "https://i.ibb.co/TrxRZRS/parrot.jpg",
-      "petName": "polly",
-      "petAge": "4 years",
-      "petLocation": "San Francisco, CA",
-      "category": "parrot",
-      "addedTime": "2024-06-01T13:00:00Z",
-      "adopted": false
-  }
-]
+    {
+        "petId": "dog123",
+        "petImage": "https://i.ibb.co/ykS6p9w/dog.jpg",
+        "petName": "Buddy",
+        "petAge": "2 years",
+        "petLocation": "New York, NY",
+        "category": "dog",
+        "addedTime": "2024-06-01T10:30:00Z",
+        "adopted": false,
+        "description": "Buddy is a friendly and energetic dog who loves to play fetch and go for long walks."
+    },
+    {
+        "petId": "cat456",
+        "petImage": "https://i.ibb.co/Cs7p4BX/banner-cat.jpg",
+        "petName": "Whiskers",
+        "petAge": "1 year",
+        "petLocation": "Los Angeles, CA",
+        "category": "cat",
+        "addedTime": "2024-06-01T11:00:00Z",
+        "adopted": false,
+        "description": "Whiskers is a curious and playful cat who enjoys chasing laser pointers and cuddling."
+    },
+    {
+        "petId": "fish789",
+        "petImage": "https://i.ibb.co/d5gP1DZ/petfish.jpg",
+        "petName": "Nemo",
+        "petAge": "6 months",
+        "petLocation": "Miami, FL",
+        "category": "fish",
+        "addedTime": "2024-06-01T11:30:00Z",
+        "adopted": false,
+        "description": "Nemo is a vibrant and lively fish who enjoys swimming around and exploring his tank."
+    },
+    {
+        "petId": "rabbit101",
+        "petImage": "https://i.ibb.co/zG89Dc2/rabbit.jpg",
+        "petName": "Thumper",
+        "petAge": "3 years",
+        "petLocation": "Chicago, IL",
+        "category": "rabbit",
+        "addedTime": "2024-06-01T12:00:00Z",
+        "adopted": false,
+        "description": "Thumper is a gentle and affectionate rabbit who loves to hop around and nibble on carrots."
+    },
+    {
+        "petId": "hamster112",
+        "petImage": "https://i.ibb.co/Ry97YC2/hamster.jpg",
+        "petName": "Gizmo",
+        "petAge": "1 year",
+        "petLocation": "Houston, TX",
+        "category": "hamster",
+        "addedTime": "2024-06-01T12:30:00Z",
+        "adopted": false,
+        "description": "Gizmo is a curious and active hamster who enjoys running on his wheel and exploring his cage."
+    },
+    {
+        "petId": "parrot131",
+        "petImage": "https://i.ibb.co/TrxRZRS/parrot.jpg",
+        "petName": "Polly",
+        "petAge": "4 years",
+        "petLocation": "San Francisco, CA",
+        "category": "parrot",
+        "addedTime": "2024-06-01T13:00:00Z",
+        "adopted": false,
+        "description": "Polly is a talkative and social parrot who loves to mimic sounds and interact with people."
+    }
+  ]
+  

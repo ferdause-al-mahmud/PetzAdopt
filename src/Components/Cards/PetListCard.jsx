@@ -2,8 +2,9 @@
 
 import { GiPawHeart } from "react-icons/gi";
 import { TbVaccine } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
-const PetListCard = ({ pet, setShowModal, setDetailPet }) => {
+const PetListCard = ({ pet }) => {
     return (
         <div className="flex flex-col gap-4 bg-base-100 border rounded-lg shadow-lg p-4">
             <div className="card flex-col md:flex-row card-side  ">
@@ -21,11 +22,9 @@ const PetListCard = ({ pet, setShowModal, setDetailPet }) => {
                     <div className="flex flex-col items-center"> <GiPawHeart className="text-2xl text-[#ff946b] " /><p>Child friendly</p></div>
                 </div>
                 <div>
-                    <button onClick={() => {
-                        setShowModal(true);
-                        setDetailPet(pet);
-
-                    }} className="btn w-full bg-[#ff946b]">Adopt</button>
+                    <Link
+                        to={`/pet-details/${pet._id}`}
+                        className="btn w-full bg-[#ff946b]">View Details</Link>
 
                 </div>
             </div>
