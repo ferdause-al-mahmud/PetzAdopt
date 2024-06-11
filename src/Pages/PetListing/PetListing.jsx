@@ -9,12 +9,10 @@ const PetListing = () => {
     const axiosCommon = useAxiosCommon();
     const [filter, setFilter] = useState('');
     const [search, setSearch] = useState('');
-
     const { data: pets = [], isLoading } = useQuery({
         queryKey: ['pets', filter, search],
         queryFn: async () => {
             const { data } = await axiosCommon.get(`/pets?category=${filter}&name=${search}`)
-
             return data
         },
     })
@@ -59,15 +57,17 @@ const PetListing = () => {
                         </label>
                     </div>
                 </div>
-                <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
-                    {isLoading ? <>
-                        <CardSkeleton />
-                        <CardSkeleton />
-                        <CardSkeleton />
-
-                    </> : pets.map(pet => <PetListCard key={pet.petId} pet={pet}></PetListCard>)}
-
+                    {isLoading ? (
+                        Array(6).fill().map((_, index) => (
+                            <CardSkeleton key={index} />
+                        ))
+                    ) : (
+                        pets.map((pet, index) => (
+                            <PetListCard key={index} pet={pet} />
+                        ))
+                    )}
                 </div>
 
 

@@ -1,0 +1,120 @@
+import { motion } from "framer-motion";
+import { useParams } from "react-router-dom";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
+import { useQuery } from "@tanstack/react-query";
+import Skeleton from "react-loading-skeleton";
+import { useState } from "react";
+import DonateModal from "../Modals/DonateModal";
+
+const DonationDetails = () => {
+    const [showModal, setShowModal] = useState(false)
+    const { id } = useParams();
+    const axiosCommon = useAxiosCommon();
+
+    const { data: campaign, isLoading, error } = useQuery({
+        queryKey: ['donation-campaign', id],
+        queryFn: async () => {
+            const { data } = await axiosCommon.get(`/campaigns/${id}`);
+            return data;
+        },
+        enabled: !!id,
+    });
+
+    if (isLoading) return
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+            <Skeleton height={400} />
+            <div className="p-4 md:p-6">
+                <Skeleton height={40} width="80%" />
+                <Skeleton count={3} height={20} width="100%" />
+                <div className="flex flex-col md:flex-row md:justify-between mt-6">
+                    <Skeleton height={40} width="30%" />
+                    <Skeleton height={40} width="30%" />
+                    <Skeleton height={40} width="30%" />
+                </div>
+            </div>
+        </div>
+    </div>;
+    if (error) return <div>Error loading campaign details</div>;
+
+    const {
+        petImage,
+        petName,
+        maxDonation,
+        donatedAmount,
+        lastDateOfDonation,
+        shortDescription,
+        longDescription,
+    } = campaign;
+    return (
+        <div className="mx-auto px-4 my-16 py-8 max-w-7xl">
+            <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="bg-white shadow-md rounded-lg overflow-hidden"
+            >
+                <img className="w-full md:h-[600px] object-cover" src={petImage} alt={petName} />
+                <div className="p-4 md:p-6">
+                    <motion.h2
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                        className="text-3xl md:text-4xl font-bold text-gray-800 mb-2"
+                    >
+                        {petName}
+                    </motion.h2>
+                    <motion.p
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3, duration: 0.5 }}
+                        className="text-gray-600 mt-2 md:text-lg"
+                    >
+                        {shortDescription}
+                    </motion.p>
+                    <motion.p
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.4, duration: 0.5 }}
+                        className="text-gray-700 mt-4 md:text-base"
+                    >
+                        {longDescription}
+                    </motion.p>
+                    <div className="mt-4"><button onClick={() => setShowModal(true)} className="btn bg-[#ff946b] text-white  md:mt-0">Donate Now</button></div>
+                    <div className="flex flex-col md:flex-row md:justify-between mt-6">
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6, duration: 0.5 }}
+                            className="flex-1 flex flex-col justify-center space-y-2 animate__animated animate__fadeInUp"
+                        >
+                            <div className="text-gray-800 font-semibold">Maximum Donation Amount:</div>
+                            <div className="text-[#ff946b] font-semibold">${maxDonation}</div>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6, duration: 0.5 }}
+                            className="flex-1 flex flex-col justify-center space-y-2 animate__animated animate__fadeInUp"
+                        >
+                            <div className="text-gray-800 font-semibold">Donated Amount:</div>
+                            <div className="text-[#ff946b] font-semibold">${donatedAmount}</div>
+                        </motion.div>
+                        <motion.div
+                            initial={{ opacity: 0, y: 50 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6, duration: 0.5 }}
+                            className="flex-1 flex flex-col justify-center space-y-2 animate__animated animate__fadeInUp"
+                        >
+                            <div className="text-[#ff946b] font-semibold">Last Date of Donation:</div>
+                            <div>{lastDateOfDonation}</div>
+                        </motion.div>
+                    </div>
+                </div>
+            </motion.div>
+            {showModal && <DonateModal campaign={campaign} setShowModal={setShowModal}></DonateModal>}
+        </div>
+    );
+};
+
+export default DonationDetails;
