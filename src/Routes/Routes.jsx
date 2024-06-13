@@ -7,6 +7,10 @@ import PetListing from "../Pages/PetListing/PetListing";
 import PetCardDetails from "../Components/PetCardDetails/PetCardDetails";
 import DonationCampaign from "../Pages/DonationCampaign/DonationCampaign";
 import DonationDetails from "../Components/donationDetails/DonationDetails";
+import Dashboard from "../Layouts/Dashboard";
+import AddPet from "../Pages/Dashboard/AddPet";
+import MyAddedPets from "../Pages/Dashboard/MyAddedPets";
+import Updatepet from "../Components/Dashboard/User/Updatepet";
 
 export const router = createBrowserRouter([
     {
@@ -16,14 +20,6 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-            },
-            {
-                path: '/login',
-                element: <Login></Login>,
-            },
-            {
-                path: '/register',
-                element: <Register></Register>,
             },
             {
                 path: '/pet-listing',
@@ -43,4 +39,28 @@ export const router = createBrowserRouter([
             },
         ]
     },
+    { path: '/login', element: <Login /> },
+    { path: '/register', element: <Register></Register> },
+    {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+        children: [
+            {
+                index: true,
+                element: <AddPet />,
+            },
+            {
+                path: 'add-pet',
+                element: <AddPet />,
+            },
+            {
+                path: 'added-pets',
+                element: <MyAddedPets></MyAddedPets>,
+            },
+            {
+                path: 'update-pet/:id',
+                element: <Updatepet />,
+            },
+        ]
+    }
 ]);
