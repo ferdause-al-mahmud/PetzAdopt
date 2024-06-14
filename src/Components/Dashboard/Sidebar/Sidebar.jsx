@@ -14,7 +14,7 @@ const Sidebar = () => {
             <button
                 title="Side navigation"
                 type="button"
-                className={`fixed right-0 top-[68px] z-50 order-10 h-10 w-10 self-center rounded bg-transparent  opacity-100 md:hidden ${isSideNavOpen ? "visible opacity-100" : ""
+                className={`fixed right-0 top-[68px] z-50 order-10 h-10 w-10 self-center rounded bg-transparent  opacity-100 lg:hidden ${isSideNavOpen ? "visible opacity-100" : ""
                     }`}
                 aria-haspopup="menu"
                 aria-label="Side navigation"
@@ -28,7 +28,7 @@ const Sidebar = () => {
             <aside
                 id="nav-menu-1"
                 aria-label="Side navigation"
-                className={`fixed top-[68px] bottom-0 left-0 z-40 flex w-72 flex-col border-r border-r-slate-200 bg-white transition-transform md:translate-x-0 ${isSideNavOpen ? "translate-x-0" : "-translate-x-full"
+                className={`fixed top-[68px] bottom-0 left-0 z-40 flex w-72 flex-col border-r border-r-slate-200 bg-white transition-transform lg:translate-x-0 ${isSideNavOpen ? "translate-x-0" : "-translate-x-full"
                     }`}
             >
 

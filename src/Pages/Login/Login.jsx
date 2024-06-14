@@ -7,7 +7,7 @@ const Login = () => {
     const { signIn, setLoading, loading, signInWithGoogle } = useAuth();
     const navigate = useNavigate()
     const location = useLocation()
-    const from = location?.state || '/';
+    const from = location.state?.from?.pathname || "/";
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.target
@@ -17,7 +17,7 @@ const Login = () => {
         try {
             setLoading(true)
             await signIn(email, password)
-            navigate(from)
+            navigate(from, { replace: true });
             toast.success('Login Successful')
         } catch (err) {
             console.log(err)
@@ -31,7 +31,7 @@ const Login = () => {
             const result = await signInWithGoogle()
             console.log(result)
 
-            navigate(from)
+            navigate(from, { replace: true });
             toast.success('Signup Successful')
         } catch (err) {
             console.log(err)

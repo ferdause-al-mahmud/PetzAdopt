@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 
 const DonationCard = ({ campaign }) => {
-    const { _id, petName, petImage, maxDonation, donatedAmount } = campaign;
+    const { _id, petName, petImage, maximumAmount, donatedAmount } = campaign;
     console.log(campaign)
     return (
         <div className="max-w-sm rounded border overflow-hidden shadow-lg m-4 bg-white">
@@ -11,7 +11,7 @@ const DonationCard = ({ campaign }) => {
             <div className="px-6 space-y-3  py-4">
                 <div className="font-bold text-2xl mb-2">{petName}</div>
                 <p className="text-gray-700 md:text-xl  text-base">
-                    <span className="font-semibold ">Maximum Donation Amount:</span> ${maxDonation}
+                    <span className="font-semibold ">Maximum Donation Amount:</span> ${maximumAmount}
                 </p>
                 <p className="text-gray-700 md:text-xl text-base">
                     <span className="font-semibold ">Donated Amount:</span> ${donatedAmount}

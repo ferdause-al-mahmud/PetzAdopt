@@ -11,6 +11,10 @@ import Dashboard from "../Layouts/Dashboard";
 import AddPet from "../Pages/Dashboard/AddPet";
 import MyAddedPets from "../Pages/Dashboard/MyAddedPets";
 import Updatepet from "../Components/Dashboard/User/Updatepet";
+import CreateCampaign from "../Pages/Dashboard/CreateCampaign";
+import MyDonationCampaigns from "../Pages/Dashboard/MyDonationCampaigns";
+import PrivateRoute from "./PrivateRoute";
+import UpdateCampaign from "../Components/Dashboard/User/UpdateCampaign";
 
 export const router = createBrowserRouter([
     {
@@ -27,7 +31,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/pet-details/:id',
-                element: <PetCardDetails></PetCardDetails>,
+                element: <PrivateRoute><PetCardDetails></PetCardDetails></PrivateRoute>,
             },
             {
                 path: '/donation-campaign',
@@ -35,7 +39,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/donation-campaign/:id',
-                element: <DonationDetails></DonationDetails>,
+                element: <PrivateRoute><DonationDetails></DonationDetails></PrivateRoute>,
             },
         ]
     },
@@ -43,7 +47,7 @@ export const router = createBrowserRouter([
     { path: '/register', element: <Register></Register> },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 index: true,
@@ -60,6 +64,18 @@ export const router = createBrowserRouter([
             {
                 path: 'update-pet/:id',
                 element: <Updatepet />,
+            },
+            {
+                path: 'create-campaign',
+                element: <CreateCampaign />,
+            },
+            {
+                path: 'donation-campaigns',
+                element: <MyDonationCampaigns />,
+            },
+            {
+                path: 'update-campaign/:id',
+                element: <UpdateCampaign></UpdateCampaign>,
             },
         ]
     }

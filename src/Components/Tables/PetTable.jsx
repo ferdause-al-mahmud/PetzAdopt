@@ -152,7 +152,7 @@ const PetTable = () => {
         </>
     }
     return (
-        <div className='mt-8 text-[14px] md:text-xl w3-container'>
+        <div className='mt-8 text-[14px] md:text-xl w3-container overflow-x-auto'>
             <div className=' overflow-x-auto'>
                 <table className='w3-table-all'>
                     <thead>

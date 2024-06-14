@@ -3,9 +3,10 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 
-const PaymentForm = ({ setShowModal, campaign }) => {
+const PaymentForm = ({ setShowModal, campaign, refetch }) => {
     const [clientSecret, setClientSecret] = useState("");
     const [amount, setAmount] = useState('');
     const [error, setError] = useState("");
@@ -65,10 +66,14 @@ const PaymentForm = ({ setShowModal, campaign }) => {
                 const payment = {
                     email: user.email,
                     amount: amount,
-                    date: new Date(),
+                    date: new Date().toLocaleDateString(),
+                    campaignId: campaign._id,
                 }
                 const res = await axiosSecure.post('/payments', payment);
                 console.log("payment sent", res)
+                toast.success("You payment is successfull");
+                refetch()
+                setShowModal(false)
             }
         }
     }
@@ -101,7 +106,7 @@ const PaymentForm = ({ setShowModal, campaign }) => {
                         type='number'
                         name='amount'
                         required
-                        onBlur={(e) => setAmount(e.target.value)}
+                        onChange={(e) => setAmount(e.target.value)}
                         className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#ff946b] bg-gray-200 text-gray-900'
                     />
                 </div>

@@ -2,16 +2,16 @@ import { motion } from "framer-motion";
 import { useParams } from "react-router-dom";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { useQuery } from "@tanstack/react-query";
-import Skeleton from "react-loading-skeleton";
 import { useState } from "react";
 import DonateModal from "../Modals/DonateModal";
-
+import parse from 'html-react-parser';
+import CampaginDetailsSkeleton from "../Skeleton/CampaginDetailsSkeleton";
 const DonationDetails = () => {
     const [showModal, setShowModal] = useState(false)
     const { id } = useParams();
     const axiosCommon = useAxiosCommon();
 
-    const { data: campaign, isLoading, error } = useQuery({
+    const { data: campaign, isLoading, error, refetch } = useQuery({
         queryKey: ['donation-campaign', id],
         queryFn: async () => {
             const { data } = await axiosCommon.get(`/campaigns/${id}`);
@@ -20,32 +20,21 @@ const DonationDetails = () => {
         enabled: !!id,
     });
 
-    if (isLoading) return
-    <div className="container mx-auto px-4 py-8 max-w-7xl">
-        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-            <Skeleton height={400} />
-            <div className="p-4 md:p-6">
-                <Skeleton height={40} width="80%" />
-                <Skeleton count={3} height={20} width="100%" />
-                <div className="flex flex-col md:flex-row md:justify-between mt-6">
-                    <Skeleton height={40} width="30%" />
-                    <Skeleton height={40} width="30%" />
-                    <Skeleton height={40} width="30%" />
-                </div>
-            </div>
-        </div>
-    </div>;
+    if (isLoading) return <CampaginDetailsSkeleton></CampaginDetailsSkeleton>;
     if (error) return <div>Error loading campaign details</div>;
 
     const {
         petImage,
         petName,
-        maxDonation,
+        maximumAmount,
         donatedAmount,
         lastDateOfDonation,
         shortDescription,
         longDescription,
+        pause
     } = campaign;
+
+    console.log(parseFloat(campaign.maximumAmount) >= parseFloat(campaign.donatedAmount))
     return (
         <div className="mx-auto px-4 my-16 py-8 max-w-7xl">
             <motion.div
@@ -78,9 +67,9 @@ const DonationDetails = () => {
                         transition={{ delay: 0.4, duration: 0.5 }}
                         className="text-gray-700 mt-4 md:text-base"
                     >
-                        {longDescription}
+                        {parse(longDescription)}
                     </motion.p>
-                    <div className="mt-4"><button onClick={() => setShowModal(true)} className="btn bg-[#ff946b] text-white  md:mt-0">Donate Now</button></div>
+                    <div className="mt-4"><button disabled={pause || (parseFloat(campaign.maximumAmount) <= parseFloat(campaign.donatedAmount))} onClick={() => setShowModal(true)} className="btn bg-[#ff946b] text-white  md:mt-0">Donate Now</button></div>
                     <div className="flex flex-col md:flex-row md:justify-between mt-6">
                         <motion.div
                             initial={{ opacity: 0, y: 50 }}
@@ -89,7 +78,7 @@ const DonationDetails = () => {
                             className="flex-1 flex flex-col justify-center space-y-2 animate__animated animate__fadeInUp"
                         >
                             <div className="text-gray-800 font-semibold">Maximum Donation Amount:</div>
-                            <div className="text-[#ff946b] font-semibold">${maxDonation}</div>
+                            <div className="text-[#ff946b] font-semibold">${maximumAmount}</div>
                         </motion.div>
                         <motion.div
                             initial={{ opacity: 0, y: 50 }}
@@ -112,7 +101,7 @@ const DonationDetails = () => {
                     </div>
                 </div>
             </motion.div>
-            {showModal && <DonateModal campaign={campaign} setShowModal={setShowModal}></DonateModal>}
+            {showModal && <DonateModal refetch={refetch} campaign={campaign} setShowModal={setShowModal}></DonateModal>}
         </div>
     );
 };
