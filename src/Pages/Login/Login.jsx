@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
-    const { signIn, setLoading, loading, signInWithGoogle } = useAuth();
+    const { signIn, setLoading, loading, signInWithGoogle, saveUser } = useAuth();
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/";
@@ -16,7 +16,7 @@ const Login = () => {
 
         try {
             setLoading(true)
-            await signIn(email, password)
+            await signIn(email, password);
             navigate(from, { replace: true });
             toast.success('Login Successful')
         } catch (err) {
@@ -29,6 +29,7 @@ const Login = () => {
     const handleGoogleSignIn = async () => {
         try {
             const result = await signInWithGoogle()
+            await saveUser(result?.user)
             console.log(result)
 
             navigate(from, { replace: true });

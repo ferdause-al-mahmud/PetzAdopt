@@ -23,7 +23,7 @@ const CreateCampaignForm = () => {
             }
         },
         onSuccess: () => {
-            console.log('Data Saved Successfully');
+            // console.log('Data Saved Successfully');
             toast.success('Data Saved Successfully!');
         },
         onError: (error) => {
@@ -44,7 +44,7 @@ const CreateCampaignForm = () => {
         data.donatedAmount = 0;
         const image_url = await imageUpload(data.petImage[0])
         data.petImage = await image_url;
-        console.log(data);
+        // console.log(data);
         await mutateAsync(data);
     };
     return (

@@ -12,6 +12,7 @@ const Register = () => {
         loading,
         logOut,
         setLoading,
+        saveUser
     } = useAuth()
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,14 +26,16 @@ const Register = () => {
             setLoading(true)
             const image_url = await imageUpload(image)
             const result = await createUser(email, password)
-            console.log(result)
             await updateUserProfile(name, image_url)
+            console.log(result.user?.displayName)
+            await saveUser(result?.user)
             logOut()
             navigate('/login')
             toast.success('Signup Successful, please login')
         } catch (err) {
             console.log(err)
             toast.error(err.message)
+            setLoading(false)
         }
     }
 

@@ -65,7 +65,6 @@ const CampaignTable = ({ handlePause }) => {
                     <DonatorsModal campaign={campaign} setShowModal={setShowModal}></DonatorsModal>
                 </>}
             </div>
-            {/*<!-- End Simple Table --> */}
 
 
         </div >

@@ -14,12 +14,12 @@ const PaymentForm = ({ setShowModal, campaign, refetch }) => {
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useAuth()
-    console.log(amount)
+    // console.log(amount)
     useEffect(() => {
         if (amount > 0) {
             axiosSecure.post('/create-payment-intent', { price: amount })
                 .then(res => {
-                    console.log(res.data.clientSecret)
+                    // console.log(res.data.clientSecret)
                     setClientSecret(res.data.clientSecret);
                 })
         }
@@ -41,7 +41,7 @@ const PaymentForm = ({ setShowModal, campaign, refetch }) => {
         });
 
         if (error) {
-            console.log('[error]', error);
+            // console.log('[error]', error);
             setError(error.message)
         } else {
             console.log('[PaymentMethod]', paymentMethod);
@@ -61,7 +61,7 @@ const PaymentForm = ({ setShowModal, campaign, refetch }) => {
         else {
             console.log("payment intent", paymentIntent);
             if (paymentIntent.status === "succeeded") {
-                console.log("transaction id ", paymentIntent.id);
+                // console.log("transaction id ", paymentIntent.id);
 
                 const payment = {
                     email: user.email,

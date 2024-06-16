@@ -6,7 +6,7 @@ import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { toast } from "react-toastify";
 
 const AdoptModal = ({ setShowModal, detailPet }) => {
-    const { petId, petImage, petName } = detailPet;
+    const { _id, petImage, petName, adderEmail } = detailPet;
     const { user } = useAuth();
     const axiosCommon = useAxiosCommon();
 
@@ -50,16 +50,17 @@ const AdoptModal = ({ setShowModal, detailPet }) => {
             userName,
             number,
             address,
-            petId,
+            petId: _id,
             petImage,
-            petName
+            petName,
+            ownerEmail: adderEmail
         }
         console.log(adoptRequest);
         await mutateAsync(adoptRequest)
 
     }
     return (
-        <div className="bg-black  z-1 bg-opacity-30 fixed top-0 w-full  h-[100vh] flex items-center  justify-center">
+        <div className="bg-black  z-10 bg-opacity-30 fixed top-0 w-full  h-[100vh] flex items-center  justify-center">
             <div className="flex flex-col  sm:w-[50vw] bg-white shadow-xl">
                 {/*  */}
 

@@ -34,7 +34,7 @@ const DonationDetails = () => {
         pause
     } = campaign;
 
-    console.log(parseFloat(campaign.maximumAmount) >= parseFloat(campaign.donatedAmount))
+    // console.log(parseFloat(campaign.maximumAmount) >= parseFloat(campaign.donatedAmount))
     return (
         <div className="mx-auto px-4 my-16 py-8 max-w-7xl">
             <motion.div

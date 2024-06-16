@@ -15,6 +15,8 @@ import CreateCampaign from "../Pages/Dashboard/CreateCampaign";
 import MyDonationCampaigns from "../Pages/Dashboard/MyDonationCampaigns";
 import PrivateRoute from "./PrivateRoute";
 import UpdateCampaign from "../Components/Dashboard/User/UpdateCampaign";
+import MyDonations from "../Pages/Dashboard/MyDonations";
+import AdoptionRequests from "../Pages/Dashboard/AdoptionRequests";
 
 export const router = createBrowserRouter([
     {
@@ -76,6 +78,14 @@ export const router = createBrowserRouter([
             {
                 path: 'update-campaign/:id',
                 element: <UpdateCampaign></UpdateCampaign>,
+            },
+            {
+                path: 'my-donations',
+                element: <MyDonations></MyDonations>,
+            },
+            {
+                path: 'adoption-requests',
+                element: <AdoptionRequests></AdoptionRequests>,
             },
         ]
     }

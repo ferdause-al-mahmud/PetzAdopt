@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const DonationCard = ({ campaign }) => {
     const { _id, petName, petImage, maximumAmount, donatedAmount } = campaign;
-    console.log(campaign)
+    // console.log(campaign)
     return (
         <div className="max-w-sm rounded border overflow-hidden shadow-lg m-4 bg-white">
             <img className="w-full h-48 object-cover" src={petImage} alt={petName} />

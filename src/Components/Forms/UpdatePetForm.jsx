@@ -18,13 +18,12 @@ const options = [
 ];
 
 const UpdatePetForm = ({ petData, isLoading }) => {
-    const { _id, petName, description, petAge, petLocation, longDescription: longDes, petId, category, petImage } = petData;
+    const { _id, petName, description, petAge, petLocation, longDescription: longDes, category, petImage } = petData;
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         defaultValues: {
             petName,
             petAge,
             petLocation,
-            petId,
             description,
         }
     });
@@ -39,12 +38,11 @@ const UpdatePetForm = ({ petData, isLoading }) => {
             setValue('petName', petName);
             setValue('petAge', petAge);
             setValue('petLocation', petLocation);
-            setValue('petId', petId);
             setValue('description', description);
             setSelectedOption(options.find(opt => opt.value === category));
             setLongDescription(longDes || '');
         }
-    }, [petData, petName, petAge, petLocation, petId, description, category, longDes, setValue]);
+    }, [petData, petName, petAge, petLocation, description, category, longDes, setValue]);
 
     const { mutateAsync } = useMutation({
         mutationFn: async addPet => {
@@ -75,7 +73,6 @@ const UpdatePetForm = ({ petData, isLoading }) => {
         if (data.petName !== petName) updatedData.petName = data.petName;
         if (data.petAge !== petAge) updatedData.petAge = data.petAge;
         if (data.petLocation !== petLocation) updatedData.petLocation = data.petLocation;
-        if (data.petId !== petId) updatedData.petId = data.petId;
         if (data.description !== description) updatedData.description = data.description;
         if (selectedOption.value !== category) updatedData.category = selectedOption.value;
         if (longDescription !== longDes) updatedData.longDescription = longDescription;
@@ -166,18 +163,6 @@ const UpdatePetForm = ({ petData, isLoading }) => {
                             className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#ff946b] bg-gray-200 text-gray-900'
                         />
                         {errors.petLocation && <span className="text-red-500">Pet location is required</span>}
-                    </div>
-                    <div className="lg:w-1/2">
-                        <label className='block mt-4 text-sm font-medium sm:text-2xl'>
-                            Pet id
-                        </label>
-                        <input
-                            type='text'
-                            {...register('petId', { required: true })}
-                            placeholder="Enter pet id"
-                            className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#ff946b] bg-gray-200 text-gray-900'
-                        />
-                        {errors.petId && <span className="text-red-500">Pet id is required</span>}
                     </div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4">

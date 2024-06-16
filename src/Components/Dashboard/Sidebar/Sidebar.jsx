@@ -60,7 +60,7 @@ const Sidebar = () => {
                             </li>
                             <li className="px-3">
                                 <NavLink
-                                    to='/dashboard/adoption-request'
+                                    to='/dashboard/adoption-requests'
                                     className="flex items-center gap-3 rounded p-3 text-slate-700 transition-colors hover:bg-[#F2D4C8] hover:text-[#ff946b] focus:bg-[#F2D4C8]"
                                 >
                                     <FiGitPullRequest className="h-6 w-6" />

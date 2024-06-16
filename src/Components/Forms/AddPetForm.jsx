@@ -8,6 +8,7 @@ import useAuth from '../../hooks/useAuth';
 import { toast } from 'react-toastify';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 var options = [
     { value: 'dog', label: 'Dog' },
@@ -27,6 +28,8 @@ const AddPetForm = () => {
     const editor = useRef(null);
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth();
+    const navigate = useNavigate()
+
     useEffect(() => {
         const currentDate = new Date().toISOString();
         setDateAdded(currentDate);
@@ -41,8 +44,10 @@ const AddPetForm = () => {
             }
         },
         onSuccess: () => {
-            console.log('Data Saved Successfully');
+            // console.log('Data Saved Successfully');
             toast.success('Data Saved Successfully!');
+            navigate('/dashboard/added-pets')
+
         },
         onError: (error) => {
             console.log(error.message);
@@ -61,7 +66,7 @@ const AddPetForm = () => {
         data.longDescription = longDescription;
         data.petImage = await image_url;
         data.adopted = false;
-        console.log(data);
+        // console.log(data);
         mutateAsync(data);
     };
 
@@ -135,18 +140,6 @@ const AddPetForm = () => {
                             className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#ff946b] bg-gray-200 text-gray-900'
                         />
                         {errors.petLocation && <span className="text-red-500">Pet location is required</span>}
-                    </div>
-                    <div className="lg:w-1/2">
-                        <label className='block mt-4 text-sm font-medium sm:text-2xl'>
-                            Pet id
-                        </label>
-                        <input
-                            type='text'
-                            {...register('petId', { required: true })}
-                            placeholder="Enter pet id"
-                            className='w-full px-3 py-2 border rounded-md border-gray-300 focus:outline-[#ff946b] bg-gray-200 text-gray-900'
-                        />
-                        {errors.petId && <span className="text-red-500">Pet id is required</span>}
                     </div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4">

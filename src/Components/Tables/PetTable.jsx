@@ -93,7 +93,7 @@ const PetTable = () => {
                 <div className='flex flex-col md:flex-row gap-3'>
                     <Link to={`/dashboard/update-pet/${row.original._id}`} className='btn text-xl bg-orange-400'><GrUpdate /></Link>
                     <button className='btn text-xl bg-red-400' onClick={() => handleDelete(row.original)}><AiOutlineDelete /></button>
-                    <button className='btn bg-green-400' onClick={() => handleAdopted(row.original)} disabled={row.original.adopted}>
+                    <button className='btn bg-green-400' onClick={() => handleAdopted(row.original)}>
                         {row.original.adopted ? 'Adopted' : 'Mark as Adopted'}
                     </button>
                 </div>
