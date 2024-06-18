@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import useAuth from "../../hooks/useAuth";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import MyDonationsTable from "../../Components/Tables/MyDonationsTable";
+import useAuth from "../../../hooks/useAuth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import MyDonationsTable from "../../../Components/Tables/MyDonationsTable";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
 

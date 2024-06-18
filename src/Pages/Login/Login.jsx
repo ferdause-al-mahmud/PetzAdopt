@@ -30,7 +30,7 @@ const Login = () => {
         try {
             const result = await signInWithGoogle()
             await saveUser(result?.user)
-            console.log(result)
+            // console.log(result)
 
             navigate(from, { replace: true });
             toast.success('Signup Successful')

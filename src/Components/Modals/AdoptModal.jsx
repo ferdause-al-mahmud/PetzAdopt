@@ -24,7 +24,7 @@ const AdoptModal = ({ setShowModal, detailPet }) => {
             }
         },
         onSuccess: () => {
-            console.log('Data Saved Successfully');
+            // console.log('Data Saved Successfully');
             toast.success('Request sent successfully!');
             setShowModal(false);
         },
@@ -55,7 +55,7 @@ const AdoptModal = ({ setShowModal, detailPet }) => {
             petName,
             ownerEmail: adderEmail
         }
-        console.log(adoptRequest);
+        // console.log(adoptRequest);
         await mutateAsync(adoptRequest)
 
     }

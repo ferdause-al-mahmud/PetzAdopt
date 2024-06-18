@@ -1,4 +1,4 @@
-import CreateCampaignForm from "../../Components/Forms/CreateCampaignForm";
+import CreateCampaignForm from "../../../Components/Forms/CreateCampaignForm";
 
 const CreateCampaign = () => {
     return (

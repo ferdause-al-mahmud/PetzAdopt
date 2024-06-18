@@ -8,15 +8,18 @@ import PetCardDetails from "../Components/PetCardDetails/PetCardDetails";
 import DonationCampaign from "../Pages/DonationCampaign/DonationCampaign";
 import DonationDetails from "../Components/donationDetails/DonationDetails";
 import Dashboard from "../Layouts/Dashboard";
-import AddPet from "../Pages/Dashboard/AddPet";
-import MyAddedPets from "../Pages/Dashboard/MyAddedPets";
-import Updatepet from "../Components/Dashboard/User/Updatepet";
-import CreateCampaign from "../Pages/Dashboard/CreateCampaign";
-import MyDonationCampaigns from "../Pages/Dashboard/MyDonationCampaigns";
 import PrivateRoute from "./PrivateRoute";
+import AllUsers from "../Pages/Dashboard/Admin/AllUsers";
+import AddPet from "../Pages/Dashboard/User/AddPet";
+import MyAddedPets from "../Pages/Dashboard/User/MyAddedPets";
+import Updatepet from "../Components/Dashboard/User/Updatepet";
+import CreateCampaign from "../Pages/Dashboard/User/CreateCampaign";
+import MyDonationCampaigns from "../Pages/Dashboard/User/MyDonationCampaigns";
 import UpdateCampaign from "../Components/Dashboard/User/UpdateCampaign";
-import MyDonations from "../Pages/Dashboard/MyDonations";
-import AdoptionRequests from "../Pages/Dashboard/AdoptionRequests";
+import MyDonations from "../Pages/Dashboard/User/MyDonations";
+import AdoptionRequests from "../Pages/Dashboard/User/AdoptionRequests";
+import AllPets from "../Pages/Dashboard/Admin/AllPets";
+import AllCampaigns from "../Pages/Dashboard/Admin/AllCampaigns";
 
 export const router = createBrowserRouter([
     {
@@ -41,15 +44,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/donation-campaign/:id',
-                element: <PrivateRoute><DonationDetails></DonationDetails></PrivateRoute>,
+                element: <PrivateRoute><DonationDetails /></PrivateRoute>,
             },
         ]
     },
     { path: '/login', element: <Login /> },
     { path: '/register', element: <Register></Register> },
     {
-        path: '/dashboard',
-        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        path: 'dashboard',
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
         children: [
             {
                 index: true,
@@ -61,7 +64,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'added-pets',
-                element: <MyAddedPets></MyAddedPets>,
+                element: <MyAddedPets />
             },
             {
                 path: 'update-pet/:id',
@@ -77,15 +80,29 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'update-campaign/:id',
-                element: <UpdateCampaign></UpdateCampaign>,
+                element: <UpdateCampaign />,
             },
             {
                 path: 'my-donations',
-                element: <MyDonations></MyDonations>,
+                element: <MyDonations />,
             },
             {
                 path: 'adoption-requests',
-                element: <AdoptionRequests></AdoptionRequests>,
+                element: <AdoptionRequests />,
+            },
+
+            // admin routes
+            {
+                path: 'all-users',
+                element: <AllUsers />,
+            },
+            {
+                path: 'all-pets',
+                element: <AllPets />,
+            },
+            {
+                path: 'all-donations',
+                element: <AllCampaigns />,
             },
         ]
     }

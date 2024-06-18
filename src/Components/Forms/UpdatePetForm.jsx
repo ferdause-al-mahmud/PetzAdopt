@@ -54,7 +54,7 @@ const UpdatePetForm = ({ petData, isLoading }) => {
             }
         },
         onSuccess: () => {
-            console.log('Data Updated Successfully');
+            // console.log('Data Updated Successfully');
             toast.success('Data Updated Successfully!');
         },
         onError: (error) => {
@@ -83,7 +83,7 @@ const UpdatePetForm = ({ petData, isLoading }) => {
         } else {
             updatedData.petImage = petImage;
         }
-        console.log(updatedData);
+        // console.log(updatedData);
         await mutateAsync(updatedData);
     };
 

@@ -13,7 +13,7 @@ const DonatorsModal = ({ setShowModal, campaign }) => {
             return data
         },
     })
-    console.log(donorsData)
+    // console.log(donorsData)
     if (isLoading) {
         return <>
             <TableSkeleton></TableSkeleton>

@@ -11,13 +11,13 @@ const AdoptionRequestsTable = ({ handleReject, handleAccept }) => {
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
     const { data: adoptionsData = [], isLoading, refetch } = useQuery({
-        queryKey: ['update-pet'],
+        queryKey: ['adoption-requests'],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/adoption-requests/${user.email}`)
             return data
         },
     })
-    console.log(adoptionsData)
+    // console.log(adoptionsData)
     if (isLoading) {
         return <>
             <TableSkeleton></TableSkeleton>
@@ -36,7 +36,7 @@ const AdoptionRequestsTable = ({ handleReject, handleAccept }) => {
                         <th scope="col" className={theadStyle}>Actions</th>
                     </tr>
                     {
-                        adoptionsData.map((adoption, idx) => <tr key={idx}>
+                        adoptionsData?.map((adoption, idx) => <tr key={idx}>
                             <td className={tbodyStyle}>{adoption.userName}</td>
                             <td className='h-12 px-6 text-xl transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500'>{adoption.email}</td>
                             <td className={tbodyStyle}>{adoption.number}</td>

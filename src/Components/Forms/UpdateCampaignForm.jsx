@@ -9,7 +9,7 @@ import { imageUpload } from '../../Utils/utils';
 const UpdateCampaignForm = ({ campaignData, isLoading }) => {
 
     const { _id, petName, petImage, maximumAmount, lastDateOfDonation, shortDescription, longDescription: longDes } = campaignData;
-    console.log(campaignData)
+    // console.log(campaignData)
     const { register, handleSubmit, formState: { errors }, setValue } = useForm({
         defaultValues: {
             petName,
@@ -72,7 +72,7 @@ const UpdateCampaignForm = ({ campaignData, isLoading }) => {
         } else {
             updatedData.petImage = petImage;
         }
-        console.log(updatedData);
+        // console.log(updatedData);
         await mutateAsync(updatedData);
     }
 

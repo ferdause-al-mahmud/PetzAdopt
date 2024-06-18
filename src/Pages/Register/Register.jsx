@@ -21,13 +21,12 @@ const Register = () => {
         const email = form.email.value
         const password = form.password.value
         const image = form.image.files[0]
-        console.log(name, email, password, image)
         try {
             setLoading(true)
             const image_url = await imageUpload(image)
             const result = await createUser(email, password)
             await updateUserProfile(name, image_url)
-            console.log(result.user?.displayName)
+            // console.log(result.user?.displayName)
             await saveUser(result?.user)
             logOut()
             navigate('/login')

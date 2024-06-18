@@ -7,7 +7,7 @@ const UpdateCampaign = () => {
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
     const { data: campaignData = [], isLoading } = useQuery({
-        queryKey: ['update-pet'],
+        queryKey: ['update-campaign'],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/campaigns/${id}`)
             return data

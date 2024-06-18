@@ -12,7 +12,7 @@ const DonationDetails = () => {
     const axiosCommon = useAxiosCommon();
 
     const { data: campaign, isLoading, error, refetch } = useQuery({
-        queryKey: ['donation-campaign', id],
+        queryKey: ['donation-campaign-details', id],
         queryFn: async () => {
             const { data } = await axiosCommon.get(`/campaigns/${id}`);
             return data;

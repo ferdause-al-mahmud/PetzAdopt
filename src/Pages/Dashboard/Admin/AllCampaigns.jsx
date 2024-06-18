@@ -1,12 +1,18 @@
-import { useMutation } from "@tanstack/react-query";
-import CampaignTable from "../../Components/Tables/CampaignTable";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import CampaignTable from "../../../Components/Tables/CampaignTable";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 
-const MyDonationCampaigns = () => {
+const AllCampaigns = () => {
     const axiosSecure = useAxiosSecure()
-    //donor lists
 
+    const { data: campaignsData = [], isLoading } = useQuery({
+        queryKey: ['my-donation-campaign'],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`/campaigns`)
+            return data
+        },
+    })
     //update campaign
     const { mutateAsync } = useMutation({
         mutationFn: async campaign => {
@@ -18,7 +24,7 @@ const MyDonationCampaigns = () => {
             }
         },
         onSuccess: () => {
-            console.log('Data Updated Successfully');
+            // console.log('Data Updated Successfully');
             toast.success('Data Updated Successfully!');
         },
         onError: (error) => {
@@ -30,11 +36,12 @@ const MyDonationCampaigns = () => {
         await mutateAsync(campaign);
     }
     return (
-        <div className="my-8 sm:mt-12">
-            <h1 className="text-3xl md:text-5xl text-center mb-8 font-bold">My donation campaigns</h1>
-            <CampaignTable handlePause={handlePause}></CampaignTable>
+        <div>
+            <h1 className="text-3xl md:text-5xl my-8 text-center font-bold">All Campaigns</h1>
+            <CampaignTable campaignsData={campaignsData} isLoading={isLoading} handlePause={handlePause}></CampaignTable>
+
         </div>
     );
 };
 
-export default MyDonationCampaigns;
+export default AllCampaigns;

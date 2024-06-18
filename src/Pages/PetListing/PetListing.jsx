@@ -18,7 +18,7 @@ const PetListing = () => {
     })
     const handleFilterChange = (event) => {
         const selectedFilter = event.target.value;
-        console.log('Selected filter:', selectedFilter);
+        // console.log('Selected filter:', selectedFilter);
         setFilter(selectedFilter);
     };
     return (

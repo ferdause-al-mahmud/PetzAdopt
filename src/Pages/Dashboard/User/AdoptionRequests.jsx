@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
-import AdoptionRequestsTable from "../../Components/Tables/AdoptionRequestsTable";
+import AdoptionRequestsTable from "../../../Components/Tables/AdoptionRequestsTable";
 import { useMutation } from "@tanstack/react-query";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 
 const AdoptionRequests = () => {
@@ -43,7 +43,7 @@ const AdoptionRequests = () => {
     });
 
     const handleReject = (adoption, refetch) => {
-        console.log(adoption)
+        // console.log(adoption)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -66,7 +66,7 @@ const AdoptionRequests = () => {
     }
 
     const handleAccept = async (adoption, refetch) => {
-        console.log(adoption);
+        // console.log(adoption);
         await mutateAccept(adoption);
         refetch()
     }

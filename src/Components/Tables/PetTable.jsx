@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
     flexRender,
     getCoreRowModel,
@@ -7,25 +8,17 @@ import {
 } from '@tanstack/react-table'
 import { AiOutlineDelete } from 'react-icons/ai';
 import { GrUpdate } from 'react-icons/gr';
-import useAuth from '../../hooks/useAuth';
-import { useMutation, useQuery } from '@tanstack/react-query';
 import TableSkeleton from '../Skeleton/TableSkeleton';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import { toast } from 'react-toastify';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { Link } from 'react-router-dom';
-const PetTable = () => {
-    const { user } = useAuth()
+import { useMutation } from '@tanstack/react-query';
+const PetTable = ({ refetch, isLoading, data }) => {
     const axiosSecure = useAxiosSecure();
     const [sorting, setSorting] = useState([])
-    const { data, isLoading, refetch } = useQuery({
-        queryKey: ['pets',],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`/pets-added/${user.email}`)
-            return data
-        },
-    })
+
     //upadate api
     const { mutateAsync: mutateAdopt } = useMutation({
         mutationFn: async (pet) => {
@@ -106,7 +99,7 @@ const PetTable = () => {
     const handleDelete = async (pet) => {
 
         // Delete pet logic here
-        console.log('Deleting pet:', pet)
+        // console.log('Deleting pet:', pet)
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",

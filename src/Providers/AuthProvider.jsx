@@ -60,6 +60,7 @@ const AuthProvider = ({ children }) => {
             email: user?.email,
             role: 'user',
             name: user?.displayName,
+            profilePicture: user?.photoURL,
             status: "Varified"
         }
         const { data } = await axios.put(

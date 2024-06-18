@@ -1,29 +1,19 @@
 /* eslint-disable react/prop-types */
 import { FaEdit, FaPause } from "react-icons/fa";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useAuth from "../../hooks/useAuth";
-import { useQuery } from "@tanstack/react-query";
 import TableSkeleton from "../Skeleton/TableSkeleton";
 import { VscDebugStart } from "react-icons/vsc";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import DonatorsModal from "../Modals/DonatorsModal";
 
-const CampaignTable = ({ handlePause }) => {
-    const axiosSecure = useAxiosSecure();
-    const { user } = useAuth();
+const CampaignTable = ({ handlePause, isLoading, campaignsData }) => {
+
     const [showModal, setShowModal] = useState(false);
     const [campaign, setCampaign] = useState([]);
 
     const tbodyStyle = 'h-12 px-6 text-sm transition duration-300 border-t border-l first:border-l-0 border-slate-200 stroke-slate-500 text-slate-500'
     const theadStyle = 'h-12 px-6 text-sm sm:text-2xl font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100'
-    const { data: campaignsData = [], isLoading } = useQuery({
-        queryKey: ['donation-campaign'],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`/campaigns/my-added/${user.email}`)
-            return data
-        },
-    })
+
     if (isLoading) {
         return <>
             <TableSkeleton></TableSkeleton>
@@ -31,7 +21,7 @@ const CampaignTable = ({ handlePause }) => {
     }
     return (
         <div>
-            <div className="w-full overflow-x-auto">
+            <div className="w-full mb-8 overflow-x-auto">
                 <table className="w-full text-left border border-collapse rounded sm:border-separate border-slate-200" cellSpacing="0">
                     <tbody>
                         <tr>
