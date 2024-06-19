@@ -4,8 +4,8 @@ const LatestNews = () => {
         <section className="max-w-7xl mx-auto py-6 sm:py-12  text-gray-800">
             <div className="container p-6 mx-auto space-y-8">
                 <div className="space-y-2 text-center">
-                    <h2 className="text-3xl font-bold">Partem reprimique an pro</h2>
-                    <p className="font-serif text-sm text-gray-600">Qualisque erroribus usu at, duo te agam soluta mucius.</p>
+                    <h1 className="text-2xl sm:text-5xl font-bold text-center">Latest News</h1>
+                    <p className="text-lg mt-8 sm:w-[70%] mx-auto text-center sm:mb-12">Thinking about adopting a pet for the first time? We{"'"}ve got you covered with expert advice and practical tips to make your journey smooth and enjoyable. Learn about pet-proofing your home.</p>
                 </div>
                 <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
                     <article className="flex flex-col bg-gray-50">
