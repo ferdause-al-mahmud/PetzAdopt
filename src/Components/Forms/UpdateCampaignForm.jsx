@@ -106,7 +106,7 @@ const UpdateCampaignForm = ({ campaignData, isLoading }) => {
                         <input
                             type='file'
                             id='petImage'
-                            {...register('petImage', { required: true })}
+                            {...register('petImage', { required: false })}
                             accept='petImage/*'
                             className='w-full px-3 py-[6px] border rounded-md border-gray-300 focus:outline-[#ff946b] bg-gray-200 text-gray-900'
                         />

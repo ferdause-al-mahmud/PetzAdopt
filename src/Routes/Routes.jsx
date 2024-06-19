@@ -21,11 +21,13 @@ import AdoptionRequests from "../Pages/Dashboard/User/AdoptionRequests";
 import AllPets from "../Pages/Dashboard/Admin/AllPets";
 import AllCampaigns from "../Pages/Dashboard/Admin/AllCampaigns";
 import AdminRoute from "./AdminRoute";
+import ErrorPage from "../Components/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 path: '/',

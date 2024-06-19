@@ -1,23 +1,27 @@
 import { useParams } from "react-router-dom";
-import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import AdoptModal from "../Modals/AdoptModal";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import PetDetailSkeleton from "../Skeleton/PetDetailSkeleton";
 
 const PetCardDetails = () => {
     const [showModal, setShowModal] = useState(false);
     const [detailPet, setDetailPet] = useState([]);
 
     const { id } = useParams();
-    const axiosCommon = useAxiosCommon();
+    const axiosSecure = useAxiosSecure();
     const { data: petDetails = [], isLoading } = useQuery({
         queryKey: ['pet-details'],
         queryFn: async () => {
-            const { data } = await axiosCommon.get(`/pets/${id}`)
+            const { data } = await axiosSecure.get(`/pets/${id}`)
             return data
         },
     })
     const { petImage, petName, description, petAge, petLocation } = petDetails;
+    if (isLoading) {
+        <PetDetailSkeleton />
+    }
     return (
         <div className="mt-16">
             <section className="bg-gray-100 text-gray-800">

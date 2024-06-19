@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from 'react'
 import {
+    GithubAuthProvider,
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
     getAuth,
@@ -17,6 +18,7 @@ import useAxiosCommon from '../hooks/useAxiosCommon'
 const auth = getAuth(app)
 export const AuthContext = createContext(null)
 const googleProvider = new GoogleAuthProvider()
+const githubProvider = new GithubAuthProvider();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
@@ -37,6 +39,11 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, googleProvider)
     }
 
+    const singInWithGithub = () => {
+
+        setLoading(true)
+        return signInWithPopup(auth, githubProvider)
+    }
     const resetPassword = email => {
         setLoading(true)
         return sendPasswordResetEmail(auth, email)
@@ -102,6 +109,7 @@ const AuthProvider = ({ children }) => {
         createUser,
         signIn,
         signInWithGoogle,
+        singInWithGithub,
         resetPassword,
         logOut,
         updateUserProfile,

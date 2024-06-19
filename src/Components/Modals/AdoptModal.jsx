@@ -2,18 +2,17 @@
 
 import { useMutation } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
-import useAxiosCommon from "../../hooks/useAxiosCommon";
 import { toast } from "react-toastify";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const AdoptModal = ({ setShowModal, detailPet }) => {
     const { _id, petImage, petName, adderEmail } = detailPet;
     const { user } = useAuth();
-    const axiosCommon = useAxiosCommon();
-
+    const axiosSecure = useAxiosSecure()
     const { mutateAsync } = useMutation({
         mutationFn: async adoptRequest => {
             try {
-                const { data } = await axiosCommon.post(`/adopts`, adoptRequest);
+                const { data } = await axiosSecure.post(`/adopts`, adoptRequest);
                 return data;
             } catch (error) {
                 if (error.response && error.response.status === 409) {

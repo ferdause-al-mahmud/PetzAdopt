@@ -1,10 +1,11 @@
 import { FcGoogle } from "react-icons/fc";
+import { BsGithub } from "react-icons/bs";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
-    const { signIn, setLoading, loading, signInWithGoogle, saveUser } = useAuth();
+    const { signIn, setLoading, loading, signInWithGoogle, saveUser, singInWithGithub } = useAuth();
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/";
@@ -37,6 +38,21 @@ const Login = () => {
         } catch (err) {
             console.log(err)
             toast.error(err.message)
+            setLoading(false)
+        }
+    }
+    const hanldeGithub = async () => {
+        try {
+            const result = await singInWithGithub()
+            await saveUser(result?.user)
+            console.log(result)
+
+            navigate(from, { replace: true });
+            toast.success('Signup Successful')
+        } catch (err) {
+            console.log(err)
+            toast.error(err.message)
+            setLoading(false)
         }
     }
     return (
@@ -95,14 +111,6 @@ const Login = () => {
                         </button>
                     </div>
                 </form>
-                <div className='space-y-1'>
-                    <button
-                        // onClick={handleResetPassword}
-                        className='text-xs hover:underline hover:text-[#ff946b] text-gray-400'
-                    >
-                        Forgot password?
-                    </button>
-                </div>
                 <div className='flex items-center pt-4 space-x-1'>
                     <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                     <p className='px-3 text-sm dark:text-gray-400'>
@@ -110,16 +118,10 @@ const Login = () => {
                     </p>
                     <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
                 </div>
-
-                <button
-                    disabled={loading}
-                    onClick={handleGoogleSignIn}
-                    className='disabled:cursor-not-allowed flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'
-                >
-                    <FcGoogle size={32} />
-
-                    <p>Continue with Google</p>
-                </button>
+                <div className='flex gap-8 justify-center mb-3'>
+                    <button onClick={handleGoogleSignIn}><FcGoogle className='text-3xl' /></button>
+                    <button onClick={hanldeGithub}><BsGithub className='text-3xl' /></button>
+                </div>
 
                 <p className='px-6 text-sm text-center text-gray-400'>
                     Don&apos;t have an account yet?{' '}
