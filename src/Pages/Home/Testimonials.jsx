@@ -24,7 +24,7 @@ const Testimonials = () => {
             <p className="text-xl font-medium mt-8 sm:w-1/2 mx-auto text-center sm:mb-12">What Our People’s Say About PetzAdopt</p>
             <div className="flex gap-6 flex-col items-center md:flex-row">
                 <div className="md:w-1/2  p-4 md:p-8 lg:p-12 flex-shrink-0">
-                    <img src="https://hips.hearstapps.com/hmg-prod/images/gettyimages-1153836586.jpg?crop=0.555xw:0.834xh;0.228xw,0&resize=2048:*" alt="" className="rounded-lg w-full" />
+                    <img src="https://hips.hearstapps.com/hmg-prod/images/gettyimages-1153836586.jpg?crop=0.555xw:0.834xh;0.228xw,0&resize=2048:*" className="rounded-lg w-full" />
                 </div>
                 <div className="w-full md:w-1/2 ">
                     <Swiper
@@ -35,7 +35,7 @@ const Testimonials = () => {
                             delay: 1000,
                             disableOnInteraction: false,
                         }}
-                        navigation={true}
+                        navigation={false}
                         modules={[Autoplay, Navigation]}
                         className="mySwiper rounded-sm md:rounded-lg"
                     >

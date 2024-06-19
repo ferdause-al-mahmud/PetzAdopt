@@ -20,6 +20,7 @@ import MyDonations from "../Pages/Dashboard/User/MyDonations";
 import AdoptionRequests from "../Pages/Dashboard/User/AdoptionRequests";
 import AllPets from "../Pages/Dashboard/Admin/AllPets";
 import AllCampaigns from "../Pages/Dashboard/Admin/AllCampaigns";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -94,15 +95,15 @@ export const router = createBrowserRouter([
             // admin routes
             {
                 path: 'all-users',
-                element: <AllUsers />,
+                element: <AdminRoute><AllUsers /></AdminRoute>,
             },
             {
                 path: 'all-pets',
-                element: <AllPets />,
+                element: <AdminRoute><AllPets /></AdminRoute>,
             },
             {
                 path: 'all-donations',
-                element: <AllCampaigns />,
+                element: <AdminRoute><AllCampaigns /></AdminRoute>,
             },
         ]
     }
