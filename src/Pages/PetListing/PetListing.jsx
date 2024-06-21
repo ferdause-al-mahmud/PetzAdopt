@@ -2,15 +2,17 @@ import { FaFilter } from "react-icons/fa";
 import PetListCard from "../../Components/Cards/PetListCard";
 import { useInfiniteQuery } from '@tanstack/react-query'
 import useAxiosCommon from "../../hooks/useAxiosCommon";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import 'react-loading-skeleton/dist/skeleton.css'
 import CardSkeleton from "../../Components/Skeleton/CardSkeleton";
 import InfiniteScroll from 'react-infinite-scroll-component';
 const PetListing = () => {
+    const queryParams = new URLSearchParams(location.search);
     const axiosCommon = useAxiosCommon();
     const [filter, setFilter] = useState('');
     const [search, setSearch] = useState('');
     const ITEMS_PER_PAGE = 6;
+    const initialFilter = queryParams.get('category') || '';
 
     const fetchPets = async ({ pageParam = 0 }) => {
         const { data } = await axiosCommon.get(`/pets?category=${filter}&name=${search}&limit=${ITEMS_PER_PAGE}&offset=${pageParam}`);
@@ -33,6 +35,10 @@ const PetListing = () => {
         // console.log('Selected filter:', selectedFilter);
         setFilter(selectedFilter);
     };
+    useEffect(() => {
+        setFilter(initialFilter);
+    }, [initialFilter]);
+
     return (
         <div className="relative">
             <div className="my-12 max-w-7xl mx-auto">
