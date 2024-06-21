@@ -4,28 +4,30 @@ import { useState } from "react";
 import AdoptModal from "../Modals/AdoptModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import PetDetailSkeleton from "../Skeleton/PetDetailSkeleton";
+import useAuth from "../../hooks/useAuth";
 
 const PetCardDetails = () => {
     const [showModal, setShowModal] = useState(false);
     const [detailPet, setDetailPet] = useState([]);
-
+    const { user } = useAuth();
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
     const { data: petDetails = [], isLoading } = useQuery({
-        queryKey: ['pet-details'],
+        queryKey: ['pet-details', id],
         queryFn: async () => {
             const { data } = await axiosSecure.get(`/pets/${id}`)
             return data
         },
+
     })
-    const { petImage, petName, description, petAge, petLocation } = petDetails;
     if (isLoading) {
-        <PetDetailSkeleton />
+        return <PetDetailSkeleton></PetDetailSkeleton>
     }
+    const { petImage, petName, description, petAge, petLocation } = petDetails;
     return (
         <div className="mt-16">
-            <section className="bg-gray-100 text-gray-800">
-                <div className="container flex flex-col justify-center p-6 gap-6 sm:py-12 lg:py-24 md:flex-row">
+            <section className="bg-gray-100 text-gray-800 ">
+                <div className=" max-w-7xl mx-auto container flex flex-col justify-center p-6 gap-6 sm:py-12 lg:py-24 md:flex-row">
                     <div className="flex md:w-1/2 items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
                         <img src={petImage} alt="" className="object-contain " />
                     </div>
@@ -37,12 +39,13 @@ const PetCardDetails = () => {
                             <p className="text-blue-600"><span className=" font-semibold text-black">Location: </span>{petLocation}</p>
                         </div>
                         <div>
-                            <button onClick={() => {
+                            <button disabled={!user} onClick={() => {
                                 setShowModal(true);
                                 setDetailPet(petDetails);
 
                             }}
                                 className="btn w-full bg-[#ff946b] text-lg font-semibold rounded">Adopt</button>
+                            {!user && <p className="mt-2 text-red-500 font-medium">You need to login to adopt</p>}
                         </div>
                     </div>
                 </div>

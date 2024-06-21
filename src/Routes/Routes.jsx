@@ -39,7 +39,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/pet-details/:id',
-                element: <PrivateRoute><PetCardDetails></PetCardDetails></PrivateRoute>,
+                element: <PetCardDetails></PetCardDetails>,
             },
             {
                 path: '/donation-campaign',
@@ -47,7 +47,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/donation-campaign/:id',
-                element: <PrivateRoute><DonationDetails /></PrivateRoute>,
+                element: <DonationDetails />,
             },
         ]
     },

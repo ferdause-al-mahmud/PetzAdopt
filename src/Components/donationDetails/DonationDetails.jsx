@@ -7,15 +7,18 @@ import parse from 'html-react-parser';
 import CampaginDetailsSkeleton from "../Skeleton/CampaginDetailsSkeleton";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import DonationCard from "../Cards/DonationCard";
+import useAxiosCommon from "../../hooks/useAxiosCommon";
+import useAuth from "../../hooks/useAuth";
 const DonationDetails = () => {
     const [showModal, setShowModal] = useState(false)
     const { id } = useParams();
     const axiosSecure = useAxiosSecure();
-
-    const { data: campaign, isLoading, error, refetch } = useQuery({
+    const { user } = useAuth()
+    const axiosCommon = useAxiosCommon();
+    const { data: campaign, isLoading, refetch } = useQuery({
         queryKey: ['donation-campaign-details', id],
         queryFn: async () => {
-            const { data } = await axiosSecure.get(`/campaigns/${id}`);
+            const { data } = await axiosCommon.get(`/campaigns/${id}`);
             return data;
         },
         enabled: !!id,
@@ -30,7 +33,6 @@ const DonationDetails = () => {
     });
     if (isLoading) return <CampaginDetailsSkeleton></CampaginDetailsSkeleton>;
     if (isLoadingRecommended) return <CampaginDetailsSkeleton></CampaginDetailsSkeleton>;
-    if (error) return <div>Error loading campaign details</div>;
 
     const {
         petImage,
@@ -79,7 +81,10 @@ const DonationDetails = () => {
                         >
                             {parse(longDescription)}
                         </motion.p>
-                        <div className="mt-4"><button disabled={pause || (parseFloat(campaign.maximumAmount) <= parseFloat(campaign.donatedAmount))} onClick={() => setShowModal(true)} className="btn bg-[#ff946b] text-white  md:mt-0">Donate Now</button></div>
+                        <div className="mt-4">
+                            <button disabled={pause || (parseFloat(campaign.maximumAmount) <= parseFloat(campaign.donatedAmount)) || !user} onClick={() => setShowModal(true)} className="btn bg-[#ff946b] text-white  md:mt-0">Donate Now</button>
+                            {!user && <p className="mt-2 text-red-500 font-medium">You need to login to donate</p>}
+                        </div>
                         <div className="flex flex-col md:flex-row md:justify-between mt-6">
                             <motion.div
                                 initial={{ opacity: 0, y: 50 }}

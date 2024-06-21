@@ -10,10 +10,10 @@ const LatestNews = () => {
                 </div>
                 <div className="grid grid-cols-1 gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
                     <article className="flex flex-col bg-gray-50">
-                        <div className="h-[60%]">
+                        <div className="sm:h-[60%]">
                             <img className="w-full h-full object-cover bg-gray-500" src="https://i.ibb.co/jgG3tdy/news1.jpg" />
                         </div>
-                        <div className="h-[40%] flex flex-col flex-1 p-6">
+                        <div className="sm:h-[40%] flex flex-col flex-1 p-6">
                             <p className="text-xs tracking-wider uppercase hover:underline text-indigo-600">Pet Adoption</p>
                             <h3 className="flex-1 py-2 text-lg font-semibold leading-snug">Booming Trend: Adopting Dogs</h3>
                             <p className="mt-2">Discover why adopting dogs is becoming increasingly popular and how you can join this heartwarming trend. Learn about the benefits of giving a dog a forever home.</p>
@@ -25,10 +25,10 @@ const LatestNews = () => {
                         </div>
                     </article>
                     <article className="flex flex-col bg-gray-50">
-                        <div className="h-[60%]">
+                        <div className="sm:h-[60%]">
                             <img className="w-full h-full object-cover bg-gray-500" src="https://i.ibb.co/vHHjwXP/news2.jpg" />
                         </div>
-                        <div className="h-[40%] flex flex-col flex-1 p-6">
+                        <div className="sm:h-[40%] flex flex-col flex-1 p-6">
                             <p className="text-xs tracking-wider uppercase hover:underline text-indigo-600">Pet Care</p>
                             <h3 className="flex-1 py-2 text-lg font-semibold leading-snug">Essential Tips Before Adopting a Pet</h3>
                             <p className="mt-2">Before you bring a new pet home, there are several important considerations. Get expert advice on preparing your home and lifestyle for your new furry friend.</p>
@@ -40,10 +40,10 @@ const LatestNews = () => {
                         </div>
                     </article>
                     <article className="flex flex-col bg-gray-50">
-                        <div className="h-[60%]">
+                        <div className="sm:h-[60%]">
                             <img className="w-full h-full object-cover bg-gray-500" src="https://i.ibb.co/9NZYvqH/news3.jpg" />
                         </div>
-                        <div className="h-[40%] flex flex-col flex-1 p-6">
+                        <div className="sm:h-[40%] flex flex-col flex-1 p-6">
                             <p className="text-xs tracking-wider uppercase hover:underline text-indigo-600">Campaigns</p>
                             <h3 className="flex-1 py-2 text-lg font-semibold leading-snug">Your Donations are Feeding Pets in Need</h3>
                             <p className="mt-2">Learn how your generous donations are providing food and care for homeless pets. Discover stories of how you’ve made a difference in their lives.</p>

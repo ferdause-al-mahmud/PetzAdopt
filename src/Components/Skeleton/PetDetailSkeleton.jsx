@@ -8,7 +8,7 @@ const PetDetailSkeleton = () => {
             <section className="bg-gray-100 text-gray-800">
                 <div className="container flex flex-col justify-center p-6 gap-6 sm:py-12 lg:py-24 md:flex-row">
                     <div className="flex md:w-1/2 items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
-                        <Skeleton width="100%" height="100%" />
+                        <Skeleton width={320} height={400} />
                     </div>
                     <div className="flex space-y-4 flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
                         <h1 className="text-3xl capitalize sm:text-5xl font-bold">
