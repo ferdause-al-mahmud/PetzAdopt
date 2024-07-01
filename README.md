@@ -1,6 +1,6 @@
 # PetzAdopt
 
-PetzAdopt is a comprehensive platform designed to connect pet lovers with pets in need of adoption. The website facilitates pet adoptions, donations for pet welfare campaigns, and provides a robust user and admin dashboard for managing pet listings and campaigns.
+Server side: (https://github.com/ferdause-al-mahmud/PetzAdopt-server)
 
 Live Site URL: [PetzAdopt](https://petzadopt-7acf4.web.app/)
 
