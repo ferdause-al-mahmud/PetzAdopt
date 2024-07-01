@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import { FaFilter } from "react-icons/fa";
 import PetListCard from "../../Components/Cards/PetListCard";
 import { useInfiniteQuery } from '@tanstack/react-query'
@@ -41,6 +42,9 @@ const PetListing = () => {
 
     return (
         <div className="relative">
+            <Helmet>
+                <title>PetzAdopt | PetListing</title>
+            </Helmet>
             <div className="my-12 max-w-7xl mx-auto">
                 <h1 className="text-2xl mb-6 sm:text-5xl font-bold text-center">List of pets</h1>
                 <div className="flex gap-4 sm:justify-around items-center px-2">

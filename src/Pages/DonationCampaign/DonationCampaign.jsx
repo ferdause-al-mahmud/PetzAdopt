@@ -3,6 +3,7 @@ import DonationCard from "../../Components/Cards/DonationCard";
 import useAxiosCommon from "../../hooks/useAxiosCommon";
 import CampaignSkeleton from "../../Components/Skeleton/CampaignSkeleton";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Helmet } from "react-helmet-async";
 
 const DonationCampaign = () => {
     const axiosCommon = useAxiosCommon()
@@ -26,6 +27,9 @@ const DonationCampaign = () => {
 
     return (
         <div className="my-12 max-w-7xl mx-auto">
+            <Helmet>
+                <title>PetzAdopt | Donation Campaigns</title>
+            </Helmet>
             <h1 className="text-2xl mb-6 sm:text-5xl font-bold text-center">Our Campaigns</h1>
             {isLoading ? <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
