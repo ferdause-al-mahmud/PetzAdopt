@@ -23,7 +23,7 @@ const PetCardDetails = () => {
     if (isLoading) {
         return <PetDetailSkeleton></PetDetailSkeleton>
     }
-    const { petImage, petName, description, petAge, petLocation } = petDetails;
+    const { petImage, petName, description, petAge, petLocation, longDescription } = petDetails;
     return (
         <div className="mt-16">
             <section className="bg-gray-100 text-gray-800 ">
@@ -33,21 +33,32 @@ const PetCardDetails = () => {
                     </div>
                     <div className="flex space-y-4 flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
                         <h1 className="text-3xl capitalize sm:text-5xl font-bold">{petName}</h1>
-                        <p className=" text-xl ">{description}</p>
+                        <p className="text-xl">{description}</p>
                         <div className="flex text-xl flex-col sm:flex-row gap-6">
-                            <p className="text-green-500"><span className=" font-semibold text-black">Age:</span> {petAge}</p>
-                            <p className="text-blue-600"><span className=" font-semibold text-black">Location: </span>{petLocation}</p>
+                            <p className="text-green-500">
+                                <span className="font-semibold text-black">Age:</span> {petAge}
+                            </p>
+                            <p className="text-blue-600">
+                                <span className="font-semibold text-black">Location: </span>{petLocation}
+                            </p>
                         </div>
+                        {/* Render the long description as HTML */}
+                        <div dangerouslySetInnerHTML={{ __html: longDescription }} className="text-lg text-gray-700"></div>
                         <div>
-                            <button disabled={!user} onClick={() => {
-                                setShowModal(true);
-                                setDetailPet(petDetails);
-
-                            }}
-                                className="btn w-full bg-[#ff946b] text-lg font-semibold rounded">Adopt</button>
+                            <button
+                                disabled={!user}
+                                onClick={() => {
+                                    setShowModal(true);
+                                    setDetailPet(petDetails);
+                                }}
+                                className="btn w-full bg-[#ff946b] text-lg font-semibold rounded"
+                            >
+                                Adopt
+                            </button>
                             {!user && <p className="mt-2 text-red-500 font-medium">You need to login to adopt</p>}
                         </div>
                     </div>
+
                 </div>
             </section>
             {showModal && <>
